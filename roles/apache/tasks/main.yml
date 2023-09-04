@@ -1,0 +1,4 @@
+- name: task
+  file:
+    path: /tmp/today.txt
+    state : 

@@ -1,0 +1,27 @@
+---
+- hosts: all
+  remote_user: ubuntu2
+  become: true
+ 
+  tasks:    
+    
+    - name: enable and install LAMP stack
+      ansible.builtin.apt:
+        name: 
+           - nginx
+           - mariadb-server
+           - php   
+        state: latest
+
+    - name: start nginx
+      service:
+        name:
+          - nginx
+          - mariadb  
+        state: started
+  
+  
+
+
+
+ 

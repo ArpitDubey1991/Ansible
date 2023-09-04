@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  become: yes
+  become_user: root
+
+  tasks:
+    - name: stop zammad service
+      ansible.builtin.systemd:
+        name: zammad
+        state: stopped
+
+    - name: backup
+      ansible.builtin.command:
+        cmd: /opt/zammad/contrib/backup/zammad_backup.sh
+
+    - name: clear cache
+      ansible.builtin.command:
+        cmd: zamma run rails r "Rails.cache.clear"
+
+    - name: update and upgrade zammad
+      ansible.builtin.apt:
+        name: zammad=6.0
+        state: latest
+        upgrade: yes
+        update_cache: yes
+
+    - name: start zammad
+      ansible.builtin.apt:
+        name: zammad
+        state: start
+      

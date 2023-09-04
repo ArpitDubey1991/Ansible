@@ -1,10 +1,10 @@
 --
-- name: Install Apache
+- name: Install Nginx
   host: all
   tasks:
     - ansible.builtin.apt:
                        update_cache: true
     - ansible.builtin.apt:
-                       name: apache2
+                       name: nginx
                        state: present
     

@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: ubuntu2
+  remote_user: remote
   become: true
  
   tasks:    
@@ -24,4 +24,3 @@
 
 
 
- 
